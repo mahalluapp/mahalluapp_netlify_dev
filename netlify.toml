@@ -1,12 +1,10 @@
 [build]
   command = "echo Building Functions && echo Building Edge Functions"
   publish = "."
+  edge_functions = "netlify/edge-functions"
 
 [functions]
   directory = "netlify/functions"
-
-[build]
-  edge_functions = "netlify/edge-functions"
   
 [[edge_functions]]
   path = "/hello"
