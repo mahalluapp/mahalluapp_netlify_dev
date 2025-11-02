@@ -4,5 +4,5 @@
   functions = "netlify-functions"
   functionsPort = 7000
 [build]
- command = "npm run build"
-publish = "build"
+    command = "npm run build"
+    publish = "build"
