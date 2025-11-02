@@ -1,10 +1,16 @@
 [build]
-  command = "npm run build"
+  command = "echo Building Functions && echo Building Edge Functions"
   publish = "."
 
 [functions]
   directory = "netlify/functions"
 
+[build]
+  edge_functions = "netlify/edge-functions"
+  
+[[edge_functions]]
+  path = "/hello"
+  function = "hello"
 [dev]
   functions = "netlify/functions"
   functionsPort = 9999
