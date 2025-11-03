@@ -2,25 +2,20 @@ import { type Context } from "@netlify/functions";
 import jwt from "jsonwebtoken";
 import { db } from "../../node/firestore.js"; // <-- update import path
 import dotenv from "dotenv";
+import { CustomResponse } from "../../utils/response.js";
 dotenv.config({ override: false })
 
 export default async (req: Request, context: Context): Promise<Response> => {
   try {
     // Extract Authorization header
     if (req.method === "OPTIONS") {
-      const res = new Response();
-
-      res.headers.set("Access-Control-Allow-Origin", "http://localhost:3000");
-      res.headers.append("Access-Control-Allow-Headers", "*");
-      res.headers.append("Access-Control-Allow-Methods", "GET,OPTIONS");
-
-      return res;
+      return new CustomResponse(null,{status:200});
     }
     const token = req.headers.get("authorization") ||
       req.headers.get("Authorization");
 
     if (!token) {
-      return new Response("Forbidden: No token provided", { status: 403 });
+      return new CustomResponse("Forbidden: No token provided", { status: 403 });
     }
     // Verify token with Firebase Identity Toolkit
     const response = await fetch(
@@ -36,13 +31,13 @@ export default async (req: Request, context: Context): Promise<Response> => {
     if (!response.ok) {
       console.error("Firebase Identity lookup failed:", response.statusText);
       console.log(process.env.API_KEY)
-      return new Response("Forbidden: Invalid token lookup", { status: 403 });
+      return new CustomResponse("Forbidden: Invalid token lookup", { status: 403 });
     }
     const user: any = await response.json();
     const id = user?.users?.[0]?.localId;
 
     if (!id) {
-      return new Response("Forbidden: Invalid user", { status: 403 });
+      return new CustomResponse("Forbidden: Invalid user", { status: 403 });
     }
 
     // Fetch user data from Firestore
@@ -50,7 +45,7 @@ export default async (req: Request, context: Context): Promise<Response> => {
     const doc = await userRef.get();
 
     if (!doc.exists) {
-      return new Response("Forbidden: User not found", { status: 403 });
+      return new CustomResponse("Forbidden: User not found", { status: 403 });
     }
 
     // Create JWT
@@ -66,12 +61,12 @@ export default async (req: Request, context: Context): Promise<Response> => {
       "Content-Type": "application/json",
     });
 
-    return new Response(JSON.stringify({ message: "Token Created" }), {
+    return new CustomResponse(JSON.stringify({ message: "Token Created" }), {
       status: 200,
       headers,
     });
   } catch (error) {
     console.error("Error verifying user:", error);
-    return new Response("Internal Server Error", { status: 500 });
+    return new CustomResponse("Internal Server Error", { status: 500 });
   }
 };
