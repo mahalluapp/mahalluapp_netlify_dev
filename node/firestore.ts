@@ -1,9 +1,8 @@
 import { initializeApp,cert} from 'firebase-admin/app';
 import { getFirestore} from 'firebase-admin/firestore';
-import { google } from 'googleapis';
-import fs from 'fs';
-import path from 'path';
-import { current_dir}  from '../utils/dirname.js';
+// import fs from 'fs';
+// import path from 'path';
+// import { current_dir}  from '../utils/dirname.js';
 import dotenv from 'dotenv';
 dotenv.config({ override: false });
 

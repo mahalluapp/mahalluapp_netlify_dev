@@ -1,9 +1,8 @@
 import { google } from 'googleapis';
-import fs from 'fs';
-import path from 'path';
+// import fs from 'fs';
+// import path from 'path';
+// import { current_dir } from '../utils/dirname.js';
 import dotenv from 'dotenv';
-import { current_dir } from '../utils/dirname.js';
-
 dotenv.config({ override: false });
 
 // const credentialsPath =process.env.NODE_ENV === 'production' ? path.join(current_dir, '../../etc/secrets/credentials.json') : 
