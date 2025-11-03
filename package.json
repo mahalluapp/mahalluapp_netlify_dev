@@ -12,9 +12,14 @@
   "type": "module",
   "dependencies": {
     "@netlify/edge-functions": "^3.0.1",
-    "@netlify/functions": "^5.0.1"
+    "@netlify/functions": "^5.0.1",
+    "dotenv": "^17.2.3",
+    "firebase-admin": "^12.7.0",
+    "googleapis": "^129.0.0",
+    "jsonwebtoken": "^9.0.2"
   },
   "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.10",
     "typescript": "^5.9.3"
   }
 }

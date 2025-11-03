@@ -5,14 +5,14 @@
 
 [functions]
   directory = "netlify/functions"
+
+  
 [functions.environment]
   API_KEY="AIzaSyA14auYHSft_6DDNbj8HSiLMI1D26DzDQs"
   ACCESS_TOKEN_SECRET="AIzaSyD1gah8n"
-
 [[edge_functions]]
   path = "/hello"
   function = "hello"
-
 [dev]
   functions = "netlify/functions"
   functionsPort = 9999
