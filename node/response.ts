@@ -3,7 +3,7 @@ export class CustomResponse extends Response {
     // Define default headers
     const defaultHeaders = {
       "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Origin": "http://localhost:3000,http://127.0.0.1:3000,https://kcpmahallu.firebaseapp.com",
       "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
       "Access-Control-Allow-Headers": "Content-Type",
     };

@@ -3,6 +3,7 @@ import type { Context } from "@netlify/functions";
 // import path from 'path';
 // import { current_dir } from "../../utils/dirname.js";
 import dotenv from "dotenv"
+import { CustomResponse } from "../../node/response.js";
 dotenv.config({ override: false });
 
 export default async (req: Request, context: Context) => {
@@ -33,5 +34,5 @@ export default async (req: Request, context: Context) => {
   // console.log(serviceAccountObj.private_key)
   // const privateKey = process.env.NODE_ENV == "production" ? serviceAccountObj.private_key.replace(/#/g, '\n'): serviceAccountObj.private_key;
   // serviceAccountObj.private_key = privateKey;
-  return new Response("OK")
+  return new CustomResponse("OK")
 }

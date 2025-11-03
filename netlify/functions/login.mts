@@ -2,7 +2,7 @@ import { type Context } from "@netlify/functions";
 import jwt from "jsonwebtoken";
 import { db } from "../../node/firestore.js"; // <-- update import path
 import dotenv from "dotenv";
-import { CustomResponse } from "../../utils/response.js";
+import { CustomResponse } from "../../node/response.js";
 dotenv.config({ override: false })
 
 export default async (req: Request, context: Context): Promise<Response> => {
