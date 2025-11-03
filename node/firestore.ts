@@ -11,11 +11,13 @@ dotenv.config({ override: false });
 
 // const rawData = fs.readFileSync(credentialsPath, 'utf-8');
 // const serviceAccount = JSON.parse(rawData);
+const encoded = process.env.encoded_private_key as string
+const decoded = Buffer.from(encoded, 'base64').toString('utf8');
 const serviceAccountObj :any = {
   type : process.env.type,
   project_id : process.env.project_id,
   private_key_id : process.env.private_key_id,
-  private_key : process.env.private_key,
+  private_key : decoded,
   client_email : process.env.client_email,
   client_id : process.env.client_id,
   auth_uri : process.env.auth_uri,
@@ -27,7 +29,7 @@ const serviceAccountObj :any = {
 // serviceAccountObj.private_key = serviceAccountObj.private_key.replace(/\\n/g, '\n')
 
 // console.log(serviceAccount)
-console.log(serviceAccountObj)
+// console.log(serviceAccountObj)
  const app =  initializeApp({
     credential: cert(serviceAccountObj)
   });

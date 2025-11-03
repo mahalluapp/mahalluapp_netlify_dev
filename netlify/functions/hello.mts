@@ -31,7 +31,7 @@ export default async (req: Request, context: Context) => {
     universe_domain: process.env.universe_domain
   }
   console.log(serviceAccountObj.private_key)
-  const privateKey = process.env.NODE_ENV == "production" ? serviceAccountObj.private_key.replace(/\\n/g, '\'): serviceAccountObj.private_key;
+  const privateKey = process.env.NODE_ENV == "production" ? serviceAccountObj.private_key.replace(/#/g, '\n'): serviceAccountObj.private_key;
   serviceAccountObj.private_key = privateKey;
   return new Response(serviceAccountObj.private_key)
 }

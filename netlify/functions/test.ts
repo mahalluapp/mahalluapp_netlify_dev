@@ -21,5 +21,5 @@ const serviceAccountObj :any = {
   universe_domain : process.env.universe_domain
 }
 
-  return new Response(serviceAccountObj.private_key)
+  return new Response(serviceAccountObj)
 }
