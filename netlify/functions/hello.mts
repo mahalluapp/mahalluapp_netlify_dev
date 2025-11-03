@@ -33,7 +33,8 @@ const serviceAccountObj :any = {
 console.log("credjson",serviceAccount.private_key)
 console.log("credEnv",serviceAccountObj.private_key)
 const check= serviceAccount.private_key == serviceAccountObj.private_key
-// console.log('Loaded credentials env:', serviceAccountEnv); 
+// console.log('Loaded credentials env:', serviceAccountEnv);
+
 console.log(check)
   return new Response(`${check}`)
 }
