@@ -7,19 +7,8 @@ dotenv.config({ override: false });
 
 export default async (req: Request, context: Context) => {
 
-const serviceAccountObj :any = {
-  type : process.env.type,
-  project_id : process.env.project_id,
-  private_key_id : process.env.private_key_id,
-  private_key : process.env.private_key,
-  client_email : process.env.client_email,
-  client_id : process.env.client_id,
-  auth_uri : process.env.auth_uri,
-  token_uri : process.env.token_uri,
-  auth_provider_x509_cert_url : process.env.auth_provider_x509_cert_url,
-  client_x509_cert_url : process.env.client_x509_cert_url,
-  universe_domain : process.env.universe_domain
-}
+const encoded = process.env.encoded_private_key as string
+const decoded = Buffer.from(encoded, 'base64').toString('utf8');
 
-  return new Response(serviceAccountObj)
+  return new Response(decoded)
 }
