@@ -2,8 +2,8 @@ import type { Context } from "@netlify/functions";
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-
-require('dotenv').config()
+import dotenv from 'dotenv';
+dotenv.config();
 
 export default async (req: Request, context: Context) => {
 const __filename = fileURLToPath(import.meta.url);
@@ -19,5 +19,5 @@ const rawData = fs.readFileSync(credentialsPath, 'utf-8');
 const serviceAccount = JSON.parse(rawData);
 
 console.log('Loaded credentials:', serviceAccount);
-  return new Response("Hello, world! Serverless")
+  return new Response(`serverless : ${process.env.NODE_ENV}, secret : ${serviceAccount}` )
 }
