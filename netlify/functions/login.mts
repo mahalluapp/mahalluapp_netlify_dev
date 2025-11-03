@@ -7,6 +7,15 @@ dotenv.config({ override: false })
 export default async (req: Request, context: Context): Promise<Response> => {
   try {
     // Extract Authorization header
+    if (req.method === "OPTIONS") {
+      const res = new Response();
+
+      res.headers.set("Access-Control-Allow-Origin", "http://localhost:3000");
+      res.headers.append("Access-Control-Allow-Headers", "*");
+      res.headers.append("Access-Control-Allow-Methods", "GET,OPTIONS");
+
+      return res;
+    }
     const token = req.headers.get("authorization") ||
       req.headers.get("Authorization");
 
@@ -29,7 +38,7 @@ export default async (req: Request, context: Context): Promise<Response> => {
       console.log(process.env.API_KEY)
       return new Response("Forbidden: Invalid token lookup", { status: 403 });
     }
-    const user :any = await response.json();
+    const user: any = await response.json();
     const id = user?.users?.[0]?.localId;
 
     if (!id) {
@@ -52,9 +61,8 @@ export default async (req: Request, context: Context): Promise<Response> => {
 
     // Build headers with HttpOnly cookie
     const headers = new Headers({
-      "Set-Cookie": `SIDLDGR=${JWT}; HttpOnly; Max-Age=${
-        24 * 60 * 60
-      }; Path=/; SameSite=None; Secure`,
+      "Set-Cookie": `SIDLDGR=${JWT}; HttpOnly; Max-Age=${24 * 60 * 60
+        }; Path=/; SameSite=None; Secure`,
       "Content-Type": "application/json",
     });
 
