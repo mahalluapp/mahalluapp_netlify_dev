@@ -5,8 +5,10 @@
 
 [functions]
   directory = "netlify/functions"
-
-  
+  included_files = [
+    "node/**"
+  ]
+  external_node_modules = ["firebase-admin", "dotenv","googleapis","jsonwebtoken"]
 [functions.environment]
   API_KEY="AIzaSyA14auYHSft_6DDNbj8HSiLMI1D26DzDQs"
   ACCESS_TOKEN_SECRET="AIzaSyD1gah8n"

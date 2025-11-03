@@ -1,18 +1,14 @@
 [build]
-  command = "echo Building Functions && echo Building Edge Functions"
+  command = "echo Building Functions"
   publish = "."
-  edge_functions = "netlify/edge-functions"
 
 [functions]
   directory = "netlify/functions"
-[functions.environment]
-  API_KEY="AIzaSyA14auYHSft_6DDNbj8HSiLMI1D26DzDQs"
-  ACCESS_TOKEN_SECRET="AIzaSyD1gah8n"
-
-[[edge_functions]]
-  path = "/hello"
-  function = "hello"
+    included_files = [
+    "node/**"
+  ]
 
 [dev]
+  node_bundler = "esbuild" 
   functions = "netlify/functions"
   functionsPort = 9999
