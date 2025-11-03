@@ -26,6 +26,7 @@ export default async (req: Request, context: Context): Promise<Response> => {
     );
     if (!response.ok) {
       console.error("Firebase Identity lookup failed:", response.statusText);
+      console.log(process.env.API_KEY)
       return new Response("Forbidden: Invalid token lookup", { status: 403 });
     }
     const user :any = await response.json();

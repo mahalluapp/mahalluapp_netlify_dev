@@ -27,7 +27,7 @@ const serviceAccountObj :any = {
 // serviceAccountObj.private_key = serviceAccountObj.private_key.replace(/\\n/g, '\n')
 
 // console.log(serviceAccount)
-// console.log(serviceAccountObj)
+console.log(serviceAccountObj)
  const app =  initializeApp({
     credential: cert(serviceAccountObj)
   });
